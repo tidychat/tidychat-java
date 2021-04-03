@@ -1,9 +1,9 @@
 name: Publish
 on:
   workflow_dispatch:
-    branches: [main]
+    branches: [main, netty-4.1.25]
   push:
-    branches: [main]
+    branches: [main, netty-4.1.25]
 jobs:
   build:
     runs-on: ubuntu-latest
