@@ -75,8 +75,6 @@ class WebSocketClientInboundHandler extends ChannelInboundHandlerAdapter {
             WebSocketClientProtocolHandler.ClientHandshakeStateEvent clientHandshakeStateEvent = (WebSocketClientProtocolHandler.ClientHandshakeStateEvent) event;
             if (clientHandshakeStateEvent == WebSocketClientProtocolHandler.ClientHandshakeStateEvent.HANDSHAKE_COMPLETE) {
                 TidyChat.getInstance().getEventManager().callEvent(new ConnectionStateChangedEvent(ConnectionState.OPEN));
-            } else if (clientHandshakeStateEvent == WebSocketClientProtocolHandler.ClientHandshakeStateEvent.HANDSHAKE_TIMEOUT) {
-                TidyChat.getInstance().getSocketClient().close();
             }
         }
     }

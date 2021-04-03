@@ -4,9 +4,9 @@ import chat.tidy.TidyChat;
 import chat.tidy.event.ConnectionStateChangedEvent;
 import io.grpc.netty.shaded.io.netty.bootstrap.Bootstrap;
 import io.grpc.netty.shaded.io.netty.channel.*;
-import io.grpc.netty.shaded.io.netty.channel.epoll.EpollEventLoopGroup;
-import io.grpc.netty.shaded.io.netty.channel.epoll.EpollSocketChannel;
+import io.grpc.netty.shaded.io.netty.channel.nio.NioEventLoopGroup;
 import io.grpc.netty.shaded.io.netty.channel.socket.SocketChannel;
+import io.grpc.netty.shaded.io.netty.channel.socket.nio.NioSocketChannel;
 import io.grpc.netty.shaded.io.netty.handler.codec.http.DefaultHttpHeaders;
 import io.grpc.netty.shaded.io.netty.handler.codec.http.HttpClientCodec;
 import io.grpc.netty.shaded.io.netty.handler.codec.http.HttpHeaders;
@@ -67,8 +67,8 @@ public class WebSocketClient {
 
         if (bootstrap == null) {
             bootstrap = new Bootstrap();
-            bootstrap.channel(EpollSocketChannel.class)
-                    .group(new EpollEventLoopGroup())
+            bootstrap.channel(NioSocketChannel.class)
+                    .group(new NioEventLoopGroup())
                     .option(ChannelOption.TCP_NODELAY, true)
                     .handler(new ChannelInitializer<SocketChannel>() {
                         @Override
